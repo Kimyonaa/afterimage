@@ -1,0 +1,40 @@
+name: Check the lab
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.1'
+          cache: npm
+      - run: npm run install:ci
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm test
+      - name: Exercise the fixture API
+        shell: bash
+        run: |
+          npm run dev > /tmp/afterimage-dev.log 2>&1 &
+          lab_pid=$!
+          trap 'kill "$lab_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in {1..60}; do
+            if curl --fail --silent http://127.0.0.1:5173/api/lab > /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 1
+          done
+          if [ "$ready" != true ]; then
+            cat /tmp/afterimage-dev.log
+            exit 1
+          fi
+          npm run test:integration
+      - run: npm run build

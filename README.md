@@ -1,8 +1,12 @@
 # Afterimage
 
-**Access ends. Information lingers.**
+A lab for checking what a web application still reveals after access is revoked.
 
-A working research prototype that traces private passages across a web application's derived views after a collaborator loses access. Built for Anupam Nainiwal's intersection of application security, machine learning, and interface design.
+A working research prototype that traces private passages across a web application's derived views after a collaborator loses access. The project combines application security, passage matching, and an interface for inspecting detector mistakes.
+
+[Demo walkthrough](docs/demo.md) · [Research protocol](ml/README.md) · [Model attribution](NOTICE.md)
+
+The hosted notebook is currently private. The source runs locally without a Sites account or an API key. Model weights are downloaded separately and are not checked into Git.
 
 ## Run locally
 
@@ -100,6 +104,8 @@ npm run test:integration
 npm run test:nli
 npm run build
 ```
+
+GitHub Actions runs formatting, type checks, core tests, fixture HTTP integration, and a production build. Live NLI checks run separately because they require downloading model weights.
 
 Core tests cover permission transitions, policy gating, exported inference parity, source-group separation, cookie handling, and baseline edge cases. HTTP integration tests cover all three cases, authorized scans, revoked scans, measured model misses, fixed scans, stale observation rejection, cookie isolation, and invalid surfaces.
 

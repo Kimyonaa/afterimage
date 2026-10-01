@@ -39,7 +39,7 @@ const server = http.createServer(async (req, res) => {
     reply(res, 404, { error: 'Not found' });
     return;
   }
-  if (!req.headers['content-type']?.startsWith('application/json')) {
+  if (req.headers['content-type']?.split(';')[0].trim().toLowerCase() !== 'application/json') {
     reply(res, 415, { error: 'Use application/json' });
     return;
   }
@@ -64,6 +64,14 @@ const server = http.createServer(async (req, res) => {
       body += chunk;
     }
     const input = JSON.parse(body);
+    if (!input || typeof input !== 'object' || Array.isArray(input)) {
+      throw new Error('Send a JSON object containing source and candidate passages.');
+    }
+    for (const field of ['permitted', 'publicApproved']) {
+      if (field in input && typeof input[field] !== 'boolean') {
+        throw new Error(`${field} must be a boolean.`);
+      }
+    }
     const result = await engine.compare(input.source, input.candidate);
     const permitted = input.permitted === true,
       publicApproved = input.publicApproved === true;

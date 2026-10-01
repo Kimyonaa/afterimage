@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-const base = 'http://127.0.0.1:8765';
+const base = process.env.AFTERIMAGE_MODEL_URL ?? 'http://127.0.0.1:8765';
 const health = await fetch(`${base}/health`);
 assert.equal((await health.json()).ready, true);
 async function compare(body) {
@@ -46,4 +46,18 @@ assert.equal(
 );
 console.log(
   'Live NLI: entailment, contradiction, authorization, public exception, input limits, origin and content-type checks passed.',
+);
+
+for (const invalid of [
+  null,
+  [],
+  { source, candidate, permitted: 'true' },
+  { source, candidate, publicApproved: 1 },
+]) {
+  assert.equal((await compare(invalid)).status, 400);
+}
+assert.equal(
+  (await compare({ source, candidate })).status,
+  200,
+  'A rejected request must not leave the model busy',
 );

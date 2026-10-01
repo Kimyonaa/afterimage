@@ -8,7 +8,9 @@ for(const caseId of ['monsoon','orchid','fellowship']){
  await action('reset',caseId);let obs=await surfaces();let r=await detect(obs);assert.equal(r.status,200);assert.equal((await r.json()).findings.filter(f=>f.flagged).length,0);
  await action('revoke');obs=await surfaces();assert.equal(obs[0].status,403);assert.ok(obs.slice(1).every(o=>o.status===200&&!o.permitted));r=await detect(obs);assert.equal(r.status,200);const findings=(await r.json()).findings;assert.equal(findings.filter(f=>f.flagged).length,2);assert.equal(findings.find(f=>f.surface==='activity').flagged,false); // Document the measured model failure.
  for(const detector of ['fuzzy','exact','cosine','embedding','lexical']){r=await detect(obs,detector);assert.equal(r.status,200);}
+ r=await detect(obs,'hybrid');assert.equal(r.status,200);assert.equal((await r.json()).findings.filter(f=>f.flagged).length,caseId==='monsoon'?3:2);
  await action('repair');r=await detect(obs);assert.equal(r.status,409);obs=await surfaces();r=await detect(obs);assert.equal(r.status,200);assert.equal((await r.json()).findings.filter(f=>f.flagged).length,0);
+ r=await detect(obs,'hybrid');assert.equal((await r.json()).findings.filter(f=>f.flagged).length,0);
  console.log(`${caseId}: authorization, deliberate leaks, model miss, repair, stale-run rejection passed`);
 }
 const other=await fetch(`${base}/api/lab`);assert.equal((await other.json()).state.revoked,false);

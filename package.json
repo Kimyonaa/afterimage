@@ -1,6 +1,6 @@
 {
   "name": "afterimage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
@@ -18,7 +18,11 @@
     "fixtures": "node --experimental-strip-types scripts/export-fixtures.mjs",
     "train": "node ml/train.mjs",
     "ablate": "node ml/ablate.mjs",
-    "research": "npm run fixtures && npm run train && npm run ablate"
+    "research": "npm run fixtures && npm run train && npm run ablate",
+    "model:serve": "node ml/serve.mjs",
+    "dev:lab": "node scripts/dev-lab.mjs",
+    "test:nli": "node tests/nli-integration.mjs",
+    "evaluate:nli": "node ml/evaluate-nli.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

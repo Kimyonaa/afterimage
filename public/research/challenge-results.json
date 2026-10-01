@@ -1,0 +1,1570 @@
+{
+  "schemaVersion": 1,
+  "title": "Fresh paraphrase and contradiction challenge",
+  "corpus": "48 manually authored synthetic pairs from 12 source documents; 24 positive and 24 negative.",
+  "protocol": {
+    "experiment": "afterimage-nli-v1",
+    "model": "Xenova/nli-deberta-v3-xsmall",
+    "dtype": "q8",
+    "decisionThreshold": 0.8,
+    "thresholdSelection": "Fixed before creating and evaluating the fresh challenge corpus; no tuning on either test set.",
+    "training": "No project-specific fine-tuning. Public pretrained NLI weights.",
+    "task": "Estimate whether the whole candidate passage is entailed by the protected source; explicit permission checks remain separate.",
+    "evaluation": "Compare against the frozen original detectors on a new, manually authored synthetic corpus. Report all examples, misses, and false positives.",
+    "limitations": [
+      "Author-designed synthetic examples are not an independent real-world audit.",
+      "Entailment is not equivalent to confidential information disclosure.",
+      "Whole-passage classification can miss partial leaks mixed with unsupported statements.",
+      "Scores are uncalibrated model outputs."
+    ]
+  },
+  "model": "Xenova/nli-deberta-v3-xsmall",
+  "thresholds": {
+    "Exact passage": 1,
+    "Token containment": 0.6363636363636364,
+    "Neural pair classifier": 0.9965944582248818,
+    "Frozen MiniLM cosine": 0.8372570633092076,
+    "Neural · embeddings only": 0.989337992776434,
+    "Neural · lexical only": 0.8470663838151035,
+    "DeBERTa entailment": 0.8
+  },
+  "models": [
+    {
+      "name": "Exact passage",
+      "precision": 0,
+      "recall": 0,
+      "f1": 0,
+      "fpr": 0,
+      "threshold": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 24,
+      "tn": 24
+    },
+    {
+      "name": "Token containment",
+      "precision": 0.5555555555555556,
+      "recall": 0.20833333333333334,
+      "f1": 0.30303030303030304,
+      "fpr": 0.16666666666666666,
+      "threshold": 0.6363636363636364,
+      "tp": 5,
+      "fp": 4,
+      "fn": 19,
+      "tn": 20
+    },
+    {
+      "name": "Neural pair classifier",
+      "precision": 0,
+      "recall": 0,
+      "f1": 0,
+      "fpr": 0,
+      "threshold": 0.9965944582248818,
+      "tp": 0,
+      "fp": 0,
+      "fn": 24,
+      "tn": 24
+    },
+    {
+      "name": "Frozen MiniLM cosine",
+      "precision": 0.6666666666666666,
+      "recall": 0.08333333333333333,
+      "f1": 0.14814814814814814,
+      "fpr": 0.041666666666666664,
+      "threshold": 0.8372570633092076,
+      "tp": 2,
+      "fp": 1,
+      "fn": 22,
+      "tn": 23
+    },
+    {
+      "name": "Neural · embeddings only",
+      "precision": 0,
+      "recall": 0,
+      "f1": 0,
+      "fpr": 0,
+      "threshold": 0.989337992776434,
+      "tp": 0,
+      "fp": 0,
+      "fn": 24,
+      "tn": 24
+    },
+    {
+      "name": "Neural · lexical only",
+      "precision": 0.5555555555555556,
+      "recall": 0.20833333333333334,
+      "f1": 0.30303030303030304,
+      "fpr": 0.16666666666666666,
+      "threshold": 0.8470663838151035,
+      "tp": 5,
+      "fp": 4,
+      "fn": 19,
+      "tn": 20
+    },
+    {
+      "name": "DeBERTa entailment",
+      "precision": 0.9523809523809523,
+      "recall": 0.8333333333333334,
+      "f1": 0.888888888888889,
+      "fpr": 0.041666666666666664,
+      "threshold": 0.8,
+      "tp": 20,
+      "fp": 1,
+      "fn": 4,
+      "tn": 23
+    }
+  ],
+  "byKind": {
+    "paraphrase": [
+      {
+        "name": "Exact passage",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 1,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Token containment",
+        "precision": 1,
+        "recall": 0.08333333333333333,
+        "f1": 0.15384615384615385,
+        "fpr": 0,
+        "threshold": 0.6363636363636364,
+        "tp": 1,
+        "fp": 0,
+        "fn": 11,
+        "tn": 0
+      },
+      {
+        "name": "Neural pair classifier",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.9965944582248818,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Frozen MiniLM cosine",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.8372570633092076,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Neural · embeddings only",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.989337992776434,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Neural · lexical only",
+        "precision": 1,
+        "recall": 0.08333333333333333,
+        "f1": 0.15384615384615385,
+        "fpr": 0,
+        "threshold": 0.8470663838151035,
+        "tp": 1,
+        "fp": 0,
+        "fn": 11,
+        "tn": 0
+      },
+      {
+        "name": "DeBERTa entailment",
+        "precision": 1,
+        "recall": 0.8333333333333334,
+        "f1": 0.9090909090909091,
+        "fpr": 0,
+        "threshold": 0.8,
+        "tp": 10,
+        "fp": 0,
+        "fn": 2,
+        "tn": 0
+      }
+    ],
+    "partial_fact": [
+      {
+        "name": "Exact passage",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 1,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Token containment",
+        "precision": 1,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "fpr": 0,
+        "threshold": 0.6363636363636364,
+        "tp": 4,
+        "fp": 0,
+        "fn": 8,
+        "tn": 0
+      },
+      {
+        "name": "Neural pair classifier",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.9965944582248818,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Frozen MiniLM cosine",
+        "precision": 1,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "fpr": 0,
+        "threshold": 0.8372570633092076,
+        "tp": 2,
+        "fp": 0,
+        "fn": 10,
+        "tn": 0
+      },
+      {
+        "name": "Neural · embeddings only",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.989337992776434,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 0
+      },
+      {
+        "name": "Neural · lexical only",
+        "precision": 1,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "fpr": 0,
+        "threshold": 0.8470663838151035,
+        "tp": 4,
+        "fp": 0,
+        "fn": 8,
+        "tn": 0
+      },
+      {
+        "name": "DeBERTa entailment",
+        "precision": 1,
+        "recall": 0.8333333333333334,
+        "f1": 0.9090909090909091,
+        "fpr": 0,
+        "threshold": 0.8,
+        "tp": 10,
+        "fp": 0,
+        "fn": 2,
+        "tn": 0
+      }
+    ],
+    "contradiction": [
+      {
+        "name": "Exact passage",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 1,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Token containment",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0.3333333333333333,
+        "threshold": 0.6363636363636364,
+        "tp": 0,
+        "fp": 4,
+        "fn": 0,
+        "tn": 8
+      },
+      {
+        "name": "Neural pair classifier",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.9965944582248818,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Frozen MiniLM cosine",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0.08333333333333333,
+        "threshold": 0.8372570633092076,
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 11
+      },
+      {
+        "name": "Neural · embeddings only",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.989337992776434,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Neural · lexical only",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0.3333333333333333,
+        "threshold": 0.8470663838151035,
+        "tp": 0,
+        "fp": 4,
+        "fn": 0,
+        "tn": 8
+      },
+      {
+        "name": "DeBERTa entailment",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.8,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      }
+    ],
+    "related_public": [
+      {
+        "name": "Exact passage",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 1,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Token containment",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.6363636363636364,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Neural pair classifier",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.9965944582248818,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Frozen MiniLM cosine",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.8372570633092076,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Neural · embeddings only",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.989337992776434,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "Neural · lexical only",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0,
+        "threshold": 0.8470663838151035,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12
+      },
+      {
+        "name": "DeBERTa entailment",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "fpr": 0.08333333333333333,
+        "threshold": 0.8,
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 11
+      }
+    ]
+  },
+  "challengeSha256": "c946fa735ee86d64f1707e0f3a6bd7d03111e1dee1383b2d5cfa85bf408bd8ae",
+  "predictions": [
+    {
+      "id": "fresh-well-0",
+      "documentId": "fresh-well",
+      "source": "The Vega survey detected lead in well 12 at 48 parts per billion. Drinking from this well is prohibited until 6 June.",
+      "candidate": "Water from well number 12 contained 48 ppb of lead.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5,
+        "Frozen MiniLM cosine": 0.615509526089157,
+        "Neural pair classifier": 0.005373624155877376,
+        "Neural · embeddings only": 0.002046750258467305,
+        "Neural · lexical only": 0.02424058154811637,
+        "DeBERTa entailment": 0.8927230666074734
+      },
+      "nli": {
+        "contradiction": 0.01722325060437736,
+        "entailment": 0.8927230666074734,
+        "neutral": 0.09005368278814947
+      }
+    },
+    {
+      "id": "fresh-well-1",
+      "documentId": "fresh-well",
+      "source": "The Vega survey detected lead in well 12 at 48 parts per billion. Drinking from this well is prohibited until 6 June.",
+      "candidate": "Well 12 cannot be used for drinking before June 6.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.7142857142857143,
+        "Frozen MiniLM cosine": 0.44256318926476196,
+        "Neural pair classifier": 0.06850928209128679,
+        "Neural · embeddings only": 0.01258967246517881,
+        "Neural · lexical only": 0.9896638738921604,
+        "DeBERTa entailment": 0.9891411108804535
+      },
+      "nli": {
+        "contradiction": 0.0012313070461914472,
+        "entailment": 0.9891411108804535,
+        "neutral": 0.009627582073354886
+      }
+    },
+    {
+      "id": "fresh-well-2",
+      "documentId": "fresh-well",
+      "source": "The Vega survey detected lead in well 12 at 48 parts per billion. Drinking from this well is prohibited until 6 June.",
+      "candidate": "The Vega survey found no lead in well 12.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.7142857142857143,
+        "Frozen MiniLM cosine": 0.6881474574181243,
+        "Neural pair classifier": 0.35097267358941436,
+        "Neural · embeddings only": 0.07776771011419227,
+        "Neural · lexical only": 0.9896638738921604,
+        "DeBERTa entailment": 0.0004391486655341599
+      },
+      "nli": {
+        "contradiction": 0.9983060833152368,
+        "entailment": 0.0004391486655341599,
+        "neutral": 0.0012547680192290037
+      }
+    },
+    {
+      "id": "fresh-well-3",
+      "documentId": "fresh-well",
+      "source": "The Vega survey detected lead in well 12 at 48 parts per billion. Drinking from this well is prohibited until 6 June.",
+      "candidate": "Lead testing can help communities assess drinking-water quality.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.2222222222222222,
+        "Frozen MiniLM cosine": 0.5345311833941887,
+        "Neural pair classifier": 0.00023092788100522986,
+        "Neural · embeddings only": 0.0008535507702910616,
+        "Neural · lexical only": 0.0006223469069031681,
+        "DeBERTa entailment": 0.010645097483926018
+      },
+      "nli": {
+        "contradiction": 0.0038379488326359926,
+        "entailment": 0.010645097483926018,
+        "neutral": 0.985516953683438
+      }
+    },
+    {
+      "id": "fresh-shipment-0",
+      "documentId": "fresh-shipment",
+      "source": "The sealed shipment contains 230 sapphire samples. It leaves the north warehouse at 04:30 on Tuesday.",
+      "candidate": "Two hundred and thirty sapphire specimens are in the sealed consignment.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.2857142857142857,
+        "Frozen MiniLM cosine": 0.7391762714968683,
+        "Neural pair classifier": 0.003124719231634517,
+        "Neural · embeddings only": 0.02461627601681076,
+        "Neural · lexical only": 0.0006079619540577277,
+        "DeBERTa entailment": 0.9853448798687091
+      },
+      "nli": {
+        "contradiction": 0.004893091318078948,
+        "entailment": 0.9853448798687091,
+        "neutral": 0.009762028813211929
+      }
+    },
+    {
+      "id": "fresh-shipment-1",
+      "documentId": "fresh-shipment",
+      "source": "The sealed shipment contains 230 sapphire samples. It leaves the north warehouse at 04:30 on Tuesday.",
+      "candidate": "The consignment departs the northern warehouse at half past four on Tuesday morning.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.2222222222222222,
+        "Frozen MiniLM cosine": 0.27399776988385866,
+        "Neural pair classifier": 0.00002793533750751242,
+        "Neural · embeddings only": 0.0000033314527813047154,
+        "Neural · lexical only": 0.0006223469069031681,
+        "DeBERTa entailment": 0.6903303083866296
+      },
+      "nli": {
+        "contradiction": 0.02095115528098757,
+        "entailment": 0.6903303083866296,
+        "neutral": 0.2887185363323829
+      }
+    },
+    {
+      "id": "fresh-shipment-2",
+      "documentId": "fresh-shipment",
+      "source": "The sealed shipment contains 230 sapphire samples. It leaves the north warehouse at 04:30 on Tuesday.",
+      "candidate": "The shipment contains only twenty sapphire samples.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6666666666666666,
+        "Frozen MiniLM cosine": 0.7965775703468079,
+        "Neural pair classifier": 0.006958696346650994,
+        "Neural · embeddings only": 0.0077082300568704545,
+        "Neural · lexical only": 0.948501098006065,
+        "DeBERTa entailment": 0.000247278887309937
+      },
+      "nli": {
+        "contradiction": 0.9985627625351574,
+        "entailment": 0.000247278887309937,
+        "neutral": 0.0011899585775327658
+      }
+    },
+    {
+      "id": "fresh-shipment-3",
+      "documentId": "fresh-shipment",
+      "source": "The sealed shipment contains 230 sapphire samples. It leaves the north warehouse at 04:30 on Tuesday.",
+      "candidate": "Warehouses often schedule deliveries outside business hours.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0,
+        "Frozen MiniLM cosine": 0.2512725658114967,
+        "Neural pair classifier": 0.0000050915243806298395,
+        "Neural · embeddings only": 0.0000025725986761303245,
+        "Neural · lexical only": 0.0006753399843415341,
+        "DeBERTa entailment": 0.005759201138409203
+      },
+      "nli": {
+        "contradiction": 0.0023531181807258214,
+        "entailment": 0.005759201138409203,
+        "neutral": 0.991887680680865
+      }
+    },
+    {
+      "id": "fresh-excavation-0",
+      "documentId": "fresh-excavation",
+      "source": "Excavators discovered a bronze seal beneath chamber seven. The seal carries the name of Queen Amara.",
+      "candidate": "A seal made of bronze was found under the seventh chamber.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.42857142857142855,
+        "Frozen MiniLM cosine": 0.6266644170788139,
+        "Neural pair classifier": 0.00029104428655972345,
+        "Neural · embeddings only": 0.0007796605944530726,
+        "Neural · lexical only": 0.0015736470150882048,
+        "DeBERTa entailment": 0.9946493060797943
+      },
+      "nli": {
+        "contradiction": 0.00034400236501862496,
+        "entailment": 0.9946493060797943,
+        "neutral": 0.005006691555187176
+      }
+    },
+    {
+      "id": "fresh-excavation-1",
+      "documentId": "fresh-excavation",
+      "source": "Excavators discovered a bronze seal beneath chamber seven. The seal carries the name of Queen Amara.",
+      "candidate": "Queen Amara is named on the newly discovered seal.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6666666666666666,
+        "Frozen MiniLM cosine": 0.7047321457283559,
+        "Neural pair classifier": 0.18926576686273155,
+        "Neural · embeddings only": 0.11540157311088317,
+        "Neural · lexical only": 0.948501098006065,
+        "DeBERTa entailment": 0.9768487826034328
+      },
+      "nli": {
+        "contradiction": 0.0005303435813954351,
+        "entailment": 0.9768487826034328,
+        "neutral": 0.022620873815171715
+      }
+    },
+    {
+      "id": "fresh-excavation-2",
+      "documentId": "fresh-excavation",
+      "source": "Excavators discovered a bronze seal beneath chamber seven. The seal carries the name of Queen Amara.",
+      "candidate": "The excavators found a silver coin and no seal beneath chamber seven.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5555555555555556,
+        "Frozen MiniLM cosine": 0.4905233797004101,
+        "Neural pair classifier": 0.001629123031193016,
+        "Neural · embeddings only": 0.004952011415340806,
+        "Neural · lexical only": 0.18356909975819988,
+        "DeBERTa entailment": 0.00007539845716701258
+      },
+      "nli": {
+        "contradiction": 0.9992132481707556,
+        "entailment": 0.00007539845716701258,
+        "neutral": 0.0007113533720772509
+      }
+    },
+    {
+      "id": "fresh-excavation-3",
+      "documentId": "fresh-excavation",
+      "source": "Excavators discovered a bronze seal beneath chamber seven. The seal carries the name of Queen Amara.",
+      "candidate": "Archaeologists use inscriptions to study historical societies.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0,
+        "Frozen MiniLM cosine": 0.23305209041375008,
+        "Neural pair classifier": 0.00010334994584105956,
+        "Neural · embeddings only": 0.01242074756372612,
+        "Neural · lexical only": 0.0006753399843415341,
+        "DeBERTa entailment": 0.0054095352254982495
+      },
+      "nli": {
+        "contradiction": 0.01651099072498442,
+        "entailment": 0.0054095352254982495,
+        "neutral": 0.9780794740495174
+      }
+    },
+    {
+      "id": "fresh-turbine-0",
+      "documentId": "fresh-turbine",
+      "source": "Turbine C stopped because its bearing cracked. Repairs require a replacement bearing costing 76000 rupees.",
+      "candidate": "A fractured bearing caused turbine C to shut down.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.42857142857142855,
+        "Frozen MiniLM cosine": 0.7708200768956583,
+        "Neural pair classifier": 0.05192821734906868,
+        "Neural · embeddings only": 0.3155149982306277,
+        "Neural · lexical only": 0.0015736470150882048,
+        "DeBERTa entailment": 0.974069659580013
+      },
+      "nli": {
+        "contradiction": 0.0010609039745730386,
+        "entailment": 0.974069659580013,
+        "neutral": 0.024869436445414075
+      }
+    },
+    {
+      "id": "fresh-turbine-1",
+      "documentId": "fresh-turbine",
+      "source": "Turbine C stopped because its bearing cracked. Repairs require a replacement bearing costing 76000 rupees.",
+      "candidate": "The replacement bearing needed for the repair costs seventy-six thousand rupees.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.3333333333333333,
+        "Frozen MiniLM cosine": 0.6281981502316937,
+        "Neural pair classifier": 0.02874024865314079,
+        "Neural · embeddings only": 0.12383577244702253,
+        "Neural · lexical only": 0.0005978126200389239,
+        "DeBERTa entailment": 0.9929801561037636
+      },
+      "nli": {
+        "contradiction": 0.0011108855306881387,
+        "entailment": 0.9929801561037636,
+        "neutral": 0.005908958365548483
+      }
+    },
+    {
+      "id": "fresh-turbine-2",
+      "documentId": "fresh-turbine",
+      "source": "Turbine C stopped because its bearing cracked. Repairs require a replacement bearing costing 76000 rupees.",
+      "candidate": "Turbine C stopped because its fuel tank was empty; its bearing is intact.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5555555555555556,
+        "Frozen MiniLM cosine": 0.7148681839134676,
+        "Neural pair classifier": 0.6599175619711464,
+        "Neural · embeddings only": 0.7894049981977781,
+        "Neural · lexical only": 0.18356909975819988,
+        "DeBERTa entailment": 0.0001447103400172341
+      },
+      "nli": {
+        "contradiction": 0.9973884160687518,
+        "entailment": 0.0001447103400172341,
+        "neutral": 0.0024668735912309206
+      }
+    },
+    {
+      "id": "fresh-turbine-3",
+      "documentId": "fresh-turbine",
+      "source": "Turbine C stopped because its bearing cracked. Repairs require a replacement bearing costing 76000 rupees.",
+      "candidate": "Turbines need routine maintenance to operate reliably.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0,
+        "Frozen MiniLM cosine": 0.5407653480957071,
+        "Neural pair classifier": 0.0021671626205132933,
+        "Neural · embeddings only": 0.48553534498141576,
+        "Neural · lexical only": 0.0006753399843415341,
+        "DeBERTa entailment": 0.016605246213892547
+      },
+      "nli": {
+        "contradiction": 0.009829058236317762,
+        "entailment": 0.016605246213892547,
+        "neutral": 0.9735656955497897
+      }
+    },
+    {
+      "id": "fresh-nest-0",
+      "documentId": "fresh-nest",
+      "source": "The falcon nest is on the roof of the abandoned east station. It contains three eggs.",
+      "candidate": "Three eggs were counted in the falcons’ nest.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6,
+        "Frozen MiniLM cosine": 0.6810531369705186,
+        "Neural pair classifier": 0.0034014852552581507,
+        "Neural · embeddings only": 0.008128653713379203,
+        "Neural · lexical only": 0.5670728509364604,
+        "DeBERTa entailment": 0.9342820527311844
+      },
+      "nli": {
+        "contradiction": 0.00048434272181342735,
+        "entailment": 0.9342820527311844,
+        "neutral": 0.06523360454700203
+      }
+    },
+    {
+      "id": "fresh-nest-1",
+      "documentId": "fresh-nest",
+      "source": "The falcon nest is on the roof of the abandoned east station. It contains three eggs.",
+      "candidate": "The deserted station to the east has a falcon nest on its roof.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.8333333333333334,
+        "Frozen MiniLM cosine": 0.8388362758322961,
+        "Neural pair classifier": 0.6624105863924241,
+        "Neural · embeddings only": 0.4806185572748029,
+        "Neural · lexical only": 0.9993776450323828,
+        "DeBERTa entailment": 0.992722113257767
+      },
+      "nli": {
+        "contradiction": 0.00020633939221215532,
+        "entailment": 0.992722113257767,
+        "neutral": 0.0070715473500209
+      }
+    },
+    {
+      "id": "fresh-nest-2",
+      "documentId": "fresh-nest",
+      "source": "The falcon nest is on the roof of the abandoned east station. It contains three eggs.",
+      "candidate": "The falcon nest contains six eggs.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.8,
+        "Frozen MiniLM cosine": 0.7465636302821606,
+        "Neural pair classifier": 0.05669523752512704,
+        "Neural · embeddings only": 0.026182103116803804,
+        "Neural · lexical only": 0.9988082083542402,
+        "DeBERTa entailment": 0.0005026314546644606
+      },
+      "nli": {
+        "contradiction": 0.996136700781168,
+        "entailment": 0.0005026314546644606,
+        "neutral": 0.003360667764167638
+      }
+    },
+    {
+      "id": "fresh-nest-3",
+      "documentId": "fresh-nest",
+      "source": "The falcon nest is on the roof of the abandoned east station. It contains three eggs.",
+      "candidate": "Falcons sometimes nest on human-made structures.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.16666666666666666,
+        "Frozen MiniLM cosine": 0.598448420156082,
+        "Neural pair classifier": 0.00016846368502545123,
+        "Neural · embeddings only": 0.001239013572994318,
+        "Neural · lexical only": 0.0006352124927384412,
+        "DeBERTa entailment": 0.07473253557680233
+      },
+      "nli": {
+        "contradiction": 0.004604093657722995,
+        "entailment": 0.07473253557680233,
+        "neutral": 0.9206633707654746
+      }
+    },
+    {
+      "id": "fresh-budget-0",
+      "documentId": "fresh-budget",
+      "source": "The council approved 1.2 million rupees for the footbridge. Construction must begin before 8 August.",
+      "candidate": "Twelve lakh rupees were approved for building the footbridge.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5,
+        "Frozen MiniLM cosine": 0.7498343032413168,
+        "Neural pair classifier": 0.46634611231954715,
+        "Neural · embeddings only": 0.9342267130052516,
+        "Neural · lexical only": 0.02424058154811637,
+        "DeBERTa entailment": 0.014582142793872956
+      },
+      "nli": {
+        "contradiction": 0.9725776924962789,
+        "entailment": 0.014582142793872956,
+        "neutral": 0.012840164709847973
+      }
+    },
+    {
+      "id": "fresh-budget-1",
+      "documentId": "fresh-budget",
+      "source": "The council approved 1.2 million rupees for the footbridge. Construction must begin before 8 August.",
+      "candidate": "Work on the footbridge has to start earlier than August 8.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.42857142857142855,
+        "Frozen MiniLM cosine": 0.5812544974187182,
+        "Neural pair classifier": 0.01640687893628542,
+        "Neural · embeddings only": 0.066717974867119,
+        "Neural · lexical only": 0.0015736470150882048,
+        "DeBERTa entailment": 0.9948751119593421
+      },
+      "nli": {
+        "contradiction": 0.0005741695439188361,
+        "entailment": 0.9948751119593421,
+        "neutral": 0.004550718496738901
+      }
+    },
+    {
+      "id": "fresh-budget-2",
+      "documentId": "fresh-budget",
+      "source": "The council approved 1.2 million rupees for the footbridge. Construction must begin before 8 August.",
+      "candidate": "The council rejected all funding for the footbridge.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.4,
+        "Frozen MiniLM cosine": 0.5732708485989774,
+        "Neural pair classifier": 0.0018747293602096064,
+        "Neural · embeddings only": 0.004357205226579095,
+        "Neural · lexical only": 0.0008301977510227203,
+        "DeBERTa entailment": 0.00009428502831344157
+      },
+      "nli": {
+        "contradiction": 0.999305507707576,
+        "entailment": 0.00009428502831344157,
+        "neutral": 0.0006002072641106572
+      }
+    },
+    {
+      "id": "fresh-budget-3",
+      "documentId": "fresh-budget",
+      "source": "The council approved 1.2 million rupees for the footbridge. Construction must begin before 8 August.",
+      "candidate": "Councils may review infrastructure funding requests each year.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0,
+        "Frozen MiniLM cosine": 0.41897306271347157,
+        "Neural pair classifier": 0.000033256812819124305,
+        "Neural · embeddings only": 0.00034903610977744364,
+        "Neural · lexical only": 0.0006753399843415341,
+        "DeBERTa entailment": 0.009788742800467641
+      },
+      "nli": {
+        "contradiction": 0.006791668901145871,
+        "entailment": 0.009788742800467641,
+        "neutral": 0.9834195882983864
+      }
+    },
+    {
+      "id": "fresh-manuscript-0",
+      "documentId": "fresh-manuscript",
+      "source": "The unpublished manuscript names Elian as the anonymous donor. Publication is scheduled for 17 February.",
+      "candidate": "Elian is identified as the donor in the unreleased manuscript.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6,
+        "Frozen MiniLM cosine": 0.8232383792006122,
+        "Neural pair classifier": 0.050549020795124903,
+        "Neural · embeddings only": 0.11802193777986665,
+        "Neural · lexical only": 0.5670728509364604,
+        "DeBERTa entailment": 0.9940678949936952
+      },
+      "nli": {
+        "contradiction": 0.0002528511975311522,
+        "entailment": 0.9940678949936952,
+        "neutral": 0.005679253808773607
+      }
+    },
+    {
+      "id": "fresh-manuscript-1",
+      "documentId": "fresh-manuscript",
+      "source": "The unpublished manuscript names Elian as the anonymous donor. Publication is scheduled for 17 February.",
+      "candidate": "The manuscript is due to be published on February 17.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6,
+        "Frozen MiniLM cosine": 0.37057160869142736,
+        "Neural pair classifier": 0.000574808290585135,
+        "Neural · embeddings only": 0.000018288716624422203,
+        "Neural · lexical only": 0.5670728509364604,
+        "DeBERTa entailment": 0.9944416348135664
+      },
+      "nli": {
+        "contradiction": 0.0005579190651660354,
+        "entailment": 0.9944416348135664,
+        "neutral": 0.0050004461212676595
+      }
+    },
+    {
+      "id": "fresh-manuscript-2",
+      "documentId": "fresh-manuscript",
+      "source": "The unpublished manuscript names Elian as the anonymous donor. Publication is scheduled for 17 February.",
+      "candidate": "The manuscript identifies Nara, not Elian, as the donor.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5,
+        "Frozen MiniLM cosine": 0.6971462082732157,
+        "Neural pair classifier": 0.00967237428507351,
+        "Neural · embeddings only": 0.017892558324444682,
+        "Neural · lexical only": 0.02424058154811637,
+        "DeBERTa entailment": 0.0005222346489315421
+      },
+      "nli": {
+        "contradiction": 0.9971188157704134,
+        "entailment": 0.0005222346489315421,
+        "neutral": 0.002358949580655187
+      }
+    },
+    {
+      "id": "fresh-manuscript-3",
+      "documentId": "fresh-manuscript",
+      "source": "The unpublished manuscript names Elian as the anonymous donor. Publication is scheduled for 17 February.",
+      "candidate": "Publishers establish schedules for releasing new manuscripts.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0,
+        "Frozen MiniLM cosine": 0.31176066479115433,
+        "Neural pair classifier": 0.000004411218002956451,
+        "Neural · embeddings only": 1.9876208827811598e-7,
+        "Neural · lexical only": 0.0006753399843415341,
+        "DeBERTa entailment": 0.19977550483675147
+      },
+      "nli": {
+        "contradiction": 0.011953805441536727,
+        "entailment": 0.19977550483675147,
+        "neutral": 0.7882706897217118
+      }
+    },
+    {
+      "id": "fresh-reservoir-0",
+      "documentId": "fresh-reservoir",
+      "source": "Reservoir D lost 18 percent of its stored water during April. An underground fracture caused the loss.",
+      "candidate": "A fracture beneath the ground caused water to escape from reservoir D.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.625,
+        "Frozen MiniLM cosine": 0.729171699945078,
+        "Neural pair classifier": 0.02435489922343257,
+        "Neural · embeddings only": 0.01495329044977269,
+        "Neural · lexical only": 0.7792317291517127,
+        "DeBERTa entailment": 0.6196080039916455
+      },
+      "nli": {
+        "contradiction": 0.2901459434968163,
+        "entailment": 0.6196080039916455,
+        "neutral": 0.0902460525115382
+      }
+    },
+    {
+      "id": "fresh-reservoir-1",
+      "documentId": "fresh-reservoir",
+      "source": "Reservoir D lost 18 percent of its stored water during April. An underground fracture caused the loss.",
+      "candidate": "Eighteen percent of reservoir D’s stored water was lost in April.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.7777777777777778,
+        "Frozen MiniLM cosine": 0.9162246586282002,
+        "Neural pair classifier": 0.7084586554087228,
+        "Neural · embeddings only": 0.6620549963684104,
+        "Neural · lexical only": 0.9980820059446016,
+        "DeBERTa entailment": 0.99581272004214
+      },
+      "nli": {
+        "contradiction": 0.0004709450542770913,
+        "entailment": 0.99581272004214,
+        "neutral": 0.003716334903582993
+      }
+    },
+    {
+      "id": "fresh-reservoir-2",
+      "documentId": "fresh-reservoir",
+      "source": "Reservoir D lost 18 percent of its stored water during April. An underground fracture caused the loss.",
+      "candidate": "Reservoir D gained eighteen percent more water during April.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6666666666666666,
+        "Frozen MiniLM cosine": 0.7571345145990568,
+        "Neural pair classifier": 0.0625827981888463,
+        "Neural · embeddings only": 0.09469879427778552,
+        "Neural · lexical only": 0.948501098006065,
+        "DeBERTa entailment": 0.00019885367961801855
+      },
+      "nli": {
+        "contradiction": 0.9975535539033005,
+        "entailment": 0.00019885367961801855,
+        "neutral": 0.002247592417081372
+      }
+    },
+    {
+      "id": "fresh-reservoir-3",
+      "documentId": "fresh-reservoir",
+      "source": "Reservoir D lost 18 percent of its stored water during April. An underground fracture caused the loss.",
+      "candidate": "Water storage levels can fluctuate across seasons.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.14285714285714285,
+        "Frozen MiniLM cosine": 0.46568015104240346,
+        "Neural pair classifier": 0.00109352588840668,
+        "Neural · embeddings only": 0.015230902737936258,
+        "Neural · lexical only": 0.0006408073634689891,
+        "DeBERTa entailment": 0.061726588257700485
+      },
+      "nli": {
+        "contradiction": 0.0010966205449771376,
+        "entailment": 0.061726588257700485,
+        "neutral": 0.9371767911973223
+      }
+    },
+    {
+      "id": "fresh-prototype-0",
+      "documentId": "fresh-prototype",
+      "source": "The Kestrel prototype weighs 620 grams. Its battery lasts nine hours under continuous load.",
+      "candidate": "Kestrel runs continuously for nine hours on its battery.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6666666666666666,
+        "Frozen MiniLM cosine": 0.6330714438127635,
+        "Neural pair classifier": 0.004005103853477702,
+        "Neural · embeddings only": 0.00022056212785406256,
+        "Neural · lexical only": 0.948501098006065,
+        "DeBERTa entailment": 0.9909272886987385
+      },
+      "nli": {
+        "contradiction": 0.0008693393266547948,
+        "entailment": 0.9909272886987385,
+        "neutral": 0.00820337197460685
+      }
+    },
+    {
+      "id": "fresh-prototype-1",
+      "documentId": "fresh-prototype",
+      "source": "The Kestrel prototype weighs 620 grams. Its battery lasts nine hours under continuous load.",
+      "candidate": "The prototype’s mass is six hundred and twenty grams.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.2857142857142857,
+        "Frozen MiniLM cosine": 0.5399600784585321,
+        "Neural pair classifier": 0.000318002510230174,
+        "Neural · embeddings only": 0.0005757067545053168,
+        "Neural · lexical only": 0.0006079619540577277,
+        "DeBERTa entailment": 0.8796791539330844
+      },
+      "nli": {
+        "contradiction": 0.0857006385883877,
+        "entailment": 0.8796791539330844,
+        "neutral": 0.03462020747852797
+      }
+    },
+    {
+      "id": "fresh-prototype-2",
+      "documentId": "fresh-prototype",
+      "source": "The Kestrel prototype weighs 620 grams. Its battery lasts nine hours under continuous load.",
+      "candidate": "The Kestrel prototype weighs two kilograms.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6,
+        "Frozen MiniLM cosine": 0.68791008049805,
+        "Neural pair classifier": 0.07735361861439508,
+        "Neural · embeddings only": 0.017197494911955453,
+        "Neural · lexical only": 0.5670728509364604,
+        "DeBERTa entailment": 0.005563311184571703
+      },
+      "nli": {
+        "contradiction": 0.950970856733944,
+        "entailment": 0.005563311184571703,
+        "neutral": 0.04346583208148448
+      }
+    },
+    {
+      "id": "fresh-prototype-3",
+      "documentId": "fresh-prototype",
+      "source": "The Kestrel prototype weighs 620 grams. Its battery lasts nine hours under continuous load.",
+      "candidate": "Battery life varies with operating conditions.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.2,
+        "Frozen MiniLM cosine": 0.4217623812289172,
+        "Neural pair classifier": 0.000021628849383452143,
+        "Neural · embeddings only": 0.000024343112654198192,
+        "Neural · lexical only": 0.0006274615923311193,
+        "DeBERTa entailment": 0.027013975359558986
+      },
+      "nli": {
+        "contradiction": 0.0031070528366861022,
+        "entailment": 0.027013975359558986,
+        "neutral": 0.9698789718037549
+      }
+    },
+    {
+      "id": "fresh-audit-0",
+      "documentId": "fresh-audit",
+      "source": "The audit found eleven duplicate payments to the Orin supplier. The total overpayment was 94000 rupees.",
+      "candidate": "Orin received eleven payments that were duplicates.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.6,
+        "Frozen MiniLM cosine": 0.7771911288812907,
+        "Neural pair classifier": 0.05976823737032378,
+        "Neural · embeddings only": 0.07809366201524104,
+        "Neural · lexical only": 0.5670728509364604,
+        "DeBERTa entailment": 0.9856868252340379
+      },
+      "nli": {
+        "contradiction": 0.0008453028611165253,
+        "entailment": 0.9856868252340379,
+        "neutral": 0.01346787190484568
+      }
+    },
+    {
+      "id": "fresh-audit-1",
+      "documentId": "fresh-audit",
+      "source": "The audit found eleven duplicate payments to the Orin supplier. The total overpayment was 94000 rupees.",
+      "candidate": "The supplier was overpaid ninety-four thousand rupees in total.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.42857142857142855,
+        "Frozen MiniLM cosine": 0.6154868933836851,
+        "Neural pair classifier": 0.0009549232635135115,
+        "Neural · embeddings only": 0.000675867456843679,
+        "Neural · lexical only": 0.0015736470150882048,
+        "DeBERTa entailment": 0.9932584802608616
+      },
+      "nli": {
+        "contradiction": 0.0009223131967038987,
+        "entailment": 0.9932584802608616,
+        "neutral": 0.005819206542434548
+      }
+    },
+    {
+      "id": "fresh-audit-2",
+      "documentId": "fresh-audit",
+      "source": "The audit found eleven duplicate payments to the Orin supplier. The total overpayment was 94000 rupees.",
+      "candidate": "The audit confirmed that Orin received no duplicate payments.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5714285714285714,
+        "Frozen MiniLM cosine": 0.7226300643207998,
+        "Neural pair classifier": 0.014906704470214189,
+        "Neural · embeddings only": 0.045334026981210127,
+        "Neural · lexical only": 0.2967193728133744,
+        "DeBERTa entailment": 0.0002485944181726846
+      },
+      "nli": {
+        "contradiction": 0.9991420915394912,
+        "entailment": 0.0002485944181726846,
+        "neutral": 0.0006093140423361513
+      }
+    },
+    {
+      "id": "fresh-audit-3",
+      "documentId": "fresh-audit",
+      "source": "The audit found eleven duplicate payments to the Orin supplier. The total overpayment was 94000 rupees.",
+      "candidate": "Audits can identify mistakes in supplier payments.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.3333333333333333,
+        "Frozen MiniLM cosine": 0.49787649388085364,
+        "Neural pair classifier": 0.0007917728852707281,
+        "Neural · embeddings only": 0.0020785152671759185,
+        "Neural · lexical only": 0.0005978126200389239,
+        "DeBERTa entailment": 0.9617052327287824
+      },
+      "nli": {
+        "contradiction": 0.00041327399357349835,
+        "entailment": 0.9617052327287824,
+        "neutral": 0.03788149327764394
+      }
+    },
+    {
+      "id": "fresh-greenhouse-0",
+      "documentId": "fresh-greenhouse",
+      "source": "Greenhouse B contains 85 surviving seedlings. A heater malfunction destroyed the remaining 15.",
+      "candidate": "Fifteen seedlings were killed by a faulty heater.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.4,
+        "Frozen MiniLM cosine": 0.7061801495689856,
+        "Neural pair classifier": 0.04929784680445109,
+        "Neural · embeddings only": 0.6778738472261605,
+        "Neural · lexical only": 0.0008301977510227203,
+        "DeBERTa entailment": 0.9936279506736402
+      },
+      "nli": {
+        "contradiction": 0.0010739079307111857,
+        "entailment": 0.9936279506736402,
+        "neutral": 0.005298141395648707
+      }
+    },
+    {
+      "id": "fresh-greenhouse-1",
+      "documentId": "fresh-greenhouse",
+      "source": "Greenhouse B contains 85 surviving seedlings. A heater malfunction destroyed the remaining 15.",
+      "candidate": "Eighty-five seedlings remain alive in greenhouse B.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.42857142857142855,
+        "Frozen MiniLM cosine": 0.813746974847282,
+        "Neural pair classifier": 0.12646289656448617,
+        "Neural · embeddings only": 0.49350690309657635,
+        "Neural · lexical only": 0.0015736470150882048,
+        "DeBERTa entailment": 0.9958638739710771
+      },
+      "nli": {
+        "contradiction": 0.0007920964032734185,
+        "entailment": 0.9958638739710771,
+        "neutral": 0.0033440296256494247
+      }
+    },
+    {
+      "id": "fresh-greenhouse-2",
+      "documentId": "fresh-greenhouse",
+      "source": "Greenhouse B contains 85 surviving seedlings. A heater malfunction destroyed the remaining 15.",
+      "candidate": "All one hundred seedlings in greenhouse B survived.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.42857142857142855,
+        "Frozen MiniLM cosine": 0.8393693383948664,
+        "Neural pair classifier": 0.0814481270401887,
+        "Neural · embeddings only": 0.2550074742012599,
+        "Neural · lexical only": 0.0015736470150882048,
+        "DeBERTa entailment": 0.001594259785068478
+      },
+      "nli": {
+        "contradiction": 0.9955569126638939,
+        "entailment": 0.001594259785068478,
+        "neutral": 0.0028488275510376248
+      }
+    },
+    {
+      "id": "fresh-greenhouse-3",
+      "documentId": "fresh-greenhouse",
+      "source": "Greenhouse B contains 85 surviving seedlings. A heater malfunction destroyed the remaining 15.",
+      "candidate": "Temperature regulation is important when growing seedlings.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.16666666666666666,
+        "Frozen MiniLM cosine": 0.4615932521025986,
+        "Neural pair classifier": 0.0017226102697944809,
+        "Neural · embeddings only": 0.0734679818248031,
+        "Neural · lexical only": 0.0006352124927384412,
+        "DeBERTa entailment": 0.32748318656489595
+      },
+      "nli": {
+        "contradiction": 0.0012661191989120882,
+        "entailment": 0.32748318656489595,
+        "neutral": 0.6712506942361919
+      }
+    },
+    {
+      "id": "fresh-ferry-0",
+      "documentId": "fresh-ferry",
+      "source": "The last ferry departs at 19:10. Repairs will close the eastern pier throughout Wednesday.",
+      "candidate": "The eastern pier is unavailable all Wednesday because of repairs.",
+      "label": 1,
+      "kind": "paraphrase",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5714285714285714,
+        "Frozen MiniLM cosine": 0.5841417814987333,
+        "Neural pair classifier": 0.00018926776565655613,
+        "Neural · embeddings only": 0.00011524856606806943,
+        "Neural · lexical only": 0.2967193728133744,
+        "DeBERTa entailment": 0.9622956505652464
+      },
+      "nli": {
+        "contradiction": 0.0010678690860884182,
+        "entailment": 0.9622956505652464,
+        "neutral": 0.03663648034866509
+      }
+    },
+    {
+      "id": "fresh-ferry-1",
+      "documentId": "fresh-ferry",
+      "source": "The last ferry departs at 19:10. Repairs will close the eastern pier throughout Wednesday.",
+      "candidate": "The final ferry leaves at ten past seven in the evening.",
+      "label": 1,
+      "kind": "partial_fact",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.14285714285714285,
+        "Frozen MiniLM cosine": 0.5798619722282266,
+        "Neural pair classifier": 0.00005466698762440437,
+        "Neural · embeddings only": 0.00003807870726852769,
+        "Neural · lexical only": 0.0006408073634689891,
+        "DeBERTa entailment": 0.602336569096652
+      },
+      "nli": {
+        "contradiction": 0.22354863800661062,
+        "entailment": 0.602336569096652,
+        "neutral": 0.17411479289673734
+      }
+    },
+    {
+      "id": "fresh-ferry-2",
+      "documentId": "fresh-ferry",
+      "source": "The last ferry departs at 19:10. Repairs will close the eastern pier throughout Wednesday.",
+      "candidate": "The last ferry departs at 06:00 in the morning.",
+      "label": 0,
+      "kind": "contradiction",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.5,
+        "Frozen MiniLM cosine": 0.6092290514343465,
+        "Neural pair classifier": 0.008439883864266886,
+        "Neural · embeddings only": 0.01902949364835755,
+        "Neural · lexical only": 0.02424058154811637,
+        "DeBERTa entailment": 0.00032390108157475463
+      },
+      "nli": {
+        "contradiction": 0.997320605822691,
+        "entailment": 0.00032390108157475463,
+        "neutral": 0.0023554930957341205
+      }
+    },
+    {
+      "id": "fresh-ferry-3",
+      "documentId": "fresh-ferry",
+      "source": "The last ferry departs at 19:10. Repairs will close the eastern pier throughout Wednesday.",
+      "candidate": "Ferry schedules may change during maintenance work.",
+      "label": 0,
+      "kind": "related_public",
+      "provenance": "Manually authored fictional challenge; no project model trained on these rows.",
+      "scores": {
+        "Exact passage": 0,
+        "Token containment": 0.14285714285714285,
+        "Frozen MiniLM cosine": 0.4969394545635823,
+        "Neural pair classifier": 0.003841883183241218,
+        "Neural · embeddings only": 0.44063795862361244,
+        "Neural · lexical only": 0.0006408073634689891,
+        "DeBERTa entailment": 0.018835905992564166
+      },
+      "nli": {
+        "contradiction": 0.0012301947450286353,
+        "entailment": 0.018835905992564166,
+        "neutral": 0.9799338992624073
+      }
+    }
+  ]
+}

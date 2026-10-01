@@ -1,0 +1,11 @@
+{
+  "experiment": "afterimage-nli-v1",
+  "model": "Xenova/nli-deberta-v3-xsmall",
+  "dtype": "q8",
+  "decisionThreshold": 0.8,
+  "thresholdSelection": "Fixed before creating and evaluating the fresh challenge corpus; no tuning on either test set.",
+  "training": "No project-specific fine-tuning. Public pretrained NLI weights.",
+  "task": "Estimate whether the whole candidate passage is entailed by the protected source; explicit permission checks remain separate.",
+  "evaluation": "Compare against the frozen original detectors on a new, manually authored synthetic corpus. Report all examples, misses, and false positives.",
+  "limitations": ["Author-designed synthetic examples are not an independent real-world audit.", "Entailment is not equivalent to confidential information disclosure.", "Whole-passage classification can miss partial leaks mixed with unsupported statements.", "Scores are uncalibrated model outputs."]
+}

@@ -1,0 +1,232 @@
+{
+  "model": "Xenova/nli-deberta-v3-xsmall",
+  "threshold": 0.8,
+  "execution": "Recorded locally with pretrained q8 DeBERTa, not live model inference in the web server.",
+  "cases": {
+    "monsoon": {
+      "source": "The Khetolai pilot recorded a 31% reduction in groundwater recharge. The team will suspend the western borewell trial on 18 October. These findings remain confidential until the district review.",
+      "passages": {
+        "The Khetolai pilot recorded a 31% reduction in groundwater recharge. The team will suspend the western borewell trial on 18 October. These findings remain confidential until the district review.": {
+          "score": 0.9911390949325551,
+          "probabilities": {
+            "contradiction": 0.0018676427850282807,
+            "entailment": 0.9911390949325551,
+            "neutral": 0.006993262282416672
+          },
+          "threshold": 0.8,
+          "contentMatch": true,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 9,
+          "tokens": 75,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The Khetolai pilot recorded a 31% reduction in groundwater recharge.": {
+          "score": 0.557251882648505,
+          "probabilities": {
+            "contradiction": 0.00844159936385171,
+            "entailment": 0.557251882648505,
+            "neutral": 0.4343065179876433
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 7,
+          "tokens": 53,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The western borewell experiment will be paused on October 18 after recharge at Khetolai fell by nearly a third.": {
+          "score": 0.9949578386305017,
+          "probabilities": {
+            "contradiction": 0.0006334726202495784,
+            "entailment": 0.9949578386305017,
+            "neutral": 0.004408688749248634
+          },
+          "threshold": 0.8,
+          "contentMatch": true,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 13,
+          "tokens": 62,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The Thar water study examines seasonal groundwater recharge using field sensors. Results will be released after peer review.": {
+          "score": 0.004936693978443662,
+          "probabilities": {
+            "contradiction": 0.008166074478341782,
+            "entailment": 0.004936693978443662,
+            "neutral": 0.9868972315432146
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 12,
+          "tokens": 59,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "Your access to this document has been removed.": {
+          "score": 0.0014360016997860862,
+          "probabilities": {
+            "contradiction": 0.9675997867327238,
+            "entailment": 0.0014360016997860862,
+            "neutral": 0.03096421156749009
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 10,
+          "tokens": 48,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        }
+      }
+    },
+    "orchid": {
+      "source": "The orchid colony contains 47 flowering plants in the eastern quarry. The survey team will visit the site on 23 November. The colony location is restricted to the conservation team.",
+      "passages": {
+        "The orchid colony contains 47 flowering plants in the eastern quarry. The survey team will visit the site on 23 November. The colony location is restricted to the conservation team.": {
+          "score": 0.9938914972390789,
+          "probabilities": {
+            "contradiction": 0.0007342390690058586,
+            "entailment": 0.9938914972390789,
+            "neutral": 0.005374263691915168
+          },
+          "threshold": 0.8,
+          "contentMatch": true,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 9,
+          "tokens": 69,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The orchid colony contains 47 flowering plants in the eastern quarry.": {
+          "score": 0.017538025013688282,
+          "probabilities": {
+            "contradiction": 0.1868229025413408,
+            "entailment": 0.017538025013688282,
+            "neutral": 0.7956390724449709
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 6,
+          "tokens": 48,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "Forty-seven orchids are flowering at the quarry to the east; the researchers return there on November 23.": {
+          "score": 0.7157856084836013,
+          "probabilities": {
+            "contradiction": 0.00881331944752024,
+            "entailment": 0.7157856084836013,
+            "neutral": 0.27540107206887837
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 8,
+          "tokens": 57,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The conservation project monitors rare orchids and publishes general habitat guidance without disclosing colony locations.": {
+          "score": 0.0009329196548421527,
+          "probabilities": {
+            "contradiction": 0.20753637805995986,
+            "entailment": 0.0009329196548421527,
+            "neutral": 0.791530702285198
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 6,
+          "tokens": 52,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "Your access to this document has been removed.": {
+          "score": 0.00018002816388158877,
+          "probabilities": {
+            "contradiction": 0.9954211269877216,
+            "entailment": 0.00018002816388158877,
+            "neutral": 0.0043988448483969125
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 6,
+          "tokens": 45,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        }
+      }
+    },
+    "fellowship": {
+      "source": "The panel selected the Aster lab for a grant of 840000 rupees. The award will be announced on 14 December. The selection must remain private until the announcement.",
+      "passages": {
+        "The panel selected the Aster lab for a grant of 840000 rupees. The award will be announced on 14 December. The selection must remain private until the announcement.": {
+          "score": 0.9944907983465493,
+          "probabilities": {
+            "contradiction": 0.0006419628770933935,
+            "entailment": 0.9944907983465493,
+            "neutral": 0.004867238776357226
+          },
+          "threshold": 0.8,
+          "contentMatch": true,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 8,
+          "tokens": 67,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The panel selected the Aster lab for a grant of 840000 rupees.": {
+          "score": 0.7019648902164123,
+          "probabilities": {
+            "contradiction": 0.0015103741551909773,
+            "entailment": 0.7019648902164123,
+            "neutral": 0.2965247356283966
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 6,
+          "tokens": 49,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "Aster is receiving an eight lakh forty thousand rupee research award, with the public announcement scheduled for December 14.": {
+          "score": 0.12396996650388424,
+          "probabilities": {
+            "contradiction": 0.03361500923360833,
+            "entailment": 0.12396996650388424,
+            "neutral": 0.8424150242625075
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 7,
+          "tokens": 56,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "The fellowship programme funds interdisciplinary research. Award recipients are published after the selection process concludes.": {
+          "score": 0.0014351704611775403,
+          "probabilities": {
+            "contradiction": 0.008510789764844963,
+            "entailment": 0.0014351704611775403,
+            "neutral": 0.9900540397739774
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 6,
+          "tokens": 52,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        },
+        "Your access to this document has been removed.": {
+          "score": 0.0016762250225117966,
+          "probabilities": {
+            "contradiction": 0.9017477201862067,
+            "entailment": 0.0016762250225117966,
+            "neutral": 0.09657605479128147
+          },
+          "threshold": 0.8,
+          "contentMatch": false,
+          "model": "Xenova/nli-deberta-v3-xsmall",
+          "elapsedMs": 6,
+          "tokens": 44,
+          "note": "Pretrained entailment estimate, not a calibrated leakage probability. Permission and public-information policy must be evaluated separately."
+        }
+      }
+    }
+  }
+}

@@ -21,3 +21,11 @@ The neural input combines |embedding difference|, embedding product, token conta
 Outputs: model weights, fixture embeddings, benchmark metadata, full labeled dataset, per-example test predictions. Do not tune on the test examples after viewing results.
 
 Future work: independently authored real-world corpus with permission; fresh independent ablation evaluation; unseen application templates; contradiction and minimal-fact tests; calibrated scores; visual matching. Treat these as missing experiments, not completed capabilities.
+
+## Experiment 002: pretrained entailment
+
+`npm run evaluate:nli` evaluates the untouched original detectors and quantized pretrained `Xenova/nli-deberta-v3-xsmall` on `challenge.mjs`: 48 manually authored pairs, 12 fictional documents. The fixed 0.8 NLI threshold and evaluation protocol are recorded in `public/research/nli-protocol.json`. No NLI training or threshold tuning was performed. This is a small author-designed challenge, not independent external validation.
+
+Outputs: challenge JSONL, full predictions and confusion counts, corpus SHA-256, and explicitly recorded demo-fixture NLI scores. The investigator combines those recordings with live exact matching; challenge metrics are for standalone NLI. Original benchmark artifacts are unchanged.
+
+`npm run model:serve` loads the model into a loopback-only HTTP companion for the browser Passage Lab. `/compare` executes fresh inference for each request; it does not store text. Policy gating follows content matching. Whole-passage entailment can reject a passage that leaks one fact but introduces another unsupported claim. Scores are uncalibrated.

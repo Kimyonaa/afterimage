@@ -9,3 +9,5 @@ The research pipeline uses the frozen sentence-transformer `sentence-transformer
 Base-model binaries are downloaded by the local research pipeline and are not included in the source archive. The archive includes derived fixture embeddings and the small classifier weights trained for this project. Third-party JavaScript dependencies retain their respective licenses; see package manifests and lockfiles.
 
 The three demo records and the generated benchmark records are fictional.
+
+The live Passage Lab and second experiment use the pretrained NLI model through [Xenova/nli-deberta-v3-xsmall](https://huggingface.co/Xenova/nli-deberta-v3-xsmall), derived from [cross-encoder/nli-deberta-v3-xsmall](https://huggingface.co/cross-encoder/nli-deberta-v3-xsmall). Consult those model cards for model provenance and terms. Its downloaded binaries are excluded from the source archive; recorded fixture scores are included. The project does not fine-tune this model.

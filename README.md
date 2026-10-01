@@ -18,11 +18,31 @@ Open the local URL printed by the development server. The app includes pretraine
 1. Select one of three fictional research cases.
 2. Optionally open **Collaborator view** in another tab.
 3. Click **Revoke & trace**. The source returns HTTP 403; three deliberately faulty derived surfaces still return private content.
-4. Inspect the source and returned passages side by side. The neural detector currently catches two of the three seeded leaks and misses the paraphrased activity message. Ground truth is displayed separately.
+4. Inspect the source and returned passages side by side. The default exact-plus-entailment detector catches all three seeded leaks in the monsoon case and two in the other cases. The original neural head still catches two. Ground truth is displayed separately.
 5. Click **Apply fix & recheck**. Derived views enforce the same policy and return a public abstract. Findings clear.
-6. Export the run as JSON, compare lexical detectors, or inspect Model bench.
+6. Export the run as JSON, inspect before/after evidence, or revisit the last 20 runs in Run archive.
+7. Open Model bench to compare frozen detectors and inspect individual mistakes.
 
-The hosted deployment is owner-private by default. This project includes only fictional fixtures; it does not scan external websites or ingest your resume.
+This project includes only fictional fixtures; it does not scan external websites or ingest your resume.
+
+## Live Passage Lab (v0.2)
+
+```sh
+npm ci --prefix ml
+npm run dev:lab
+```
+
+This starts the web app and a local model companion on port 8765. If the web app is already running, use `npm run model:serve` in a second terminal. First startup downloads `Xenova/nli-deberta-v3-xsmall`; later runs use `ml/cache/`. Passage Lab accepts your own text and performs real local ONNX inference. Passage text is not sent to an external service or stored in the run archive. Inputs are limited to 4,000 characters per passage and 512 combined tokens.
+
+The investigator’s **Exact + entailment (recorded)** option combines a live exact-match check with recorded NLI scores for known fixtures. It does not run DeBERTa inside the web worker. Passage Lab runs the actual model for each comparison. DeBERTa is pretrained, not fine-tuned by this project.
+
+## Fresh challenge
+
+A separate author-designed challenge has 48 pairs from 12 fictional documents, including paraphrases, partial facts, contradictions, and related public text. Original weights and thresholds stayed frozen; the NLI threshold was fixed at 0.8 before evaluation. Standalone DeBERTa detected **20/24 matches**, with **1/24 false positives** (95.2% precision, 83.3% recall). The original trained head detected none at its frozen threshold. All five NLI mistakes are inspectable in Model bench.
+
+This small synthetic, paraphrase-heavy challenge is not independent real-world validation. Whole-passage entailment can miss partial disclosures when a candidate also contains unsupported details. Its results measure standalone NLI, not the investigator’s exact-plus-NLI combination. The original experiment is preserved below.
+
+Run archive stores up to 20 fictional fixture runs in this browser. Repair comparisons use the most recent earlier revoked, unfixed run with the same case and detector. Export includes source, policy, observations, and comparison when available.
 
 ## What is implemented
 
@@ -72,6 +92,8 @@ npm run typecheck
 npm test
 # With npm run dev running:
 npm run test:integration
+# With the model companion running:
+npm run test:nli
 npm run build
 ```
 
@@ -110,9 +132,9 @@ The application-managed tab snapshot is a controlled fixture endpoint. It is **n
 
 ## Next research milestones
 
-1. Improve training diversity using an independently authored corpus; hold out a new untouched test set.
+1. Evaluate on an independently authored, permissioned real-world corpus.
 2. Repeat the included lexical-only and embedding-only ablations on a fresh independent test set.
-3. Add minimal-fact, numeric-contradiction, public-summary, and multilingual tests.
+3. Expand minimal-fact and numeric-contradiction coverage; add multilingual tests.
 4. Evaluate on additional application templates with permission.
 5. Calibrate scores and measure reviewer confirmation time.
 6. Extend to image previews only after demonstrating text generalization.

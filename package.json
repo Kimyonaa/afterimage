@@ -22,7 +22,9 @@
     "model:serve": "node ml/serve.mjs",
     "dev:lab": "node scripts/dev-lab.mjs",
     "test:nli": "node tests/nli-integration.mjs",
-    "evaluate:nli": "node ml/evaluate-nli.mjs"
+    "evaluate:nli": "node ml/evaluate-nli.mjs",
+    "format": "prettier --write \"app/**/*.{ts,tsx,css}\" \"components/afterimage/**/*.tsx\" \"lib/afterimage/**/*.ts\" \"ml/*.mjs\" \"tests/*.mjs\" scripts/dev-lab.mjs",
+    "format:check": "prettier --check \"app/**/*.{ts,tsx,css}\" \"components/afterimage/**/*.tsx\" \"lib/afterimage/**/*.ts\" \"ml/*.mjs\" \"tests/*.mjs\" scripts/dev-lab.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -63,6 +65,7 @@
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.4",
     "json-rpc-2.0": "1.7.1",
+    "prettier": "3.6.2",
     "raw-body": "3.0.2",
     "react-server-dom-webpack": "19.2.6",
     "tailwindcss": "4.2.1",

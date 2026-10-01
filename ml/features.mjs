@@ -1,8 +1,80 @@
-export const STOP=new Set('a an the and or of to in on at by for is are was were be been being it its this that these those will with from as has have had after before until'.split(' '));
-export function tokens(s){return s.toLowerCase().match(/[a-z0-9]+/g)?.filter(x=>!STOP.has(x))??[];}
-export function exact(source,candidate){const normalize=s=>s.toLowerCase().replace(/\s+/g,' ').trim();return candidate.trim().length>20&&normalize(source).includes(normalize(candidate))?1:0;}
-export function fuzzy(source,candidate){const a=new Set(tokens(source)),b=new Set(tokens(candidate));return b.size?[...b].filter(x=>a.has(x)).length/b.size:0;}
-export function pairFeatures(a,b,source,candidate){return [...a.map((x,i)=>Math.abs(x-b[i])),...a.map((x,i)=>x*b[i]),fuzzy(source,candidate),exact(source,candidate)];}
-export function metrics(labels,scores,threshold){let tp=0,fp=0,tn=0,fn=0;labels.forEach((y,i)=>{const p=scores[i]>=threshold;if(y&&p)tp++;else if(!y&&p)fp++;else if(y)fn++;else tn++;});const precision=tp/(tp+fp||1),recall=tp/(tp+fn||1);return {precision,recall,f1:2*precision*recall/(precision+recall||1),fpr:fp/(fp+tn||1),threshold,tp,fp,fn,tn};}
-export function chooseThreshold(labels,scores){const choices=[...new Set([0,...scores,1.000001])].sort((a,b)=>a-b);let best=metrics(labels,scores,1.000001);for(const t of choices){const m=metrics(labels,scores,t);if(m.fpr<=.05&&(m.recall>best.recall||(m.recall===best.recall&&m.precision>best.precision)))best=m;}return best.threshold;}
-export function forward(features,artifact){let x=features;for(let i=0;i<artifact.layers.length;i++){const {weights,bias}=artifact.layers[i];const out=bias.map((b,j)=>b+x.reduce((sum,v,k)=>sum+v*weights[k][j],0));x=out.map(v=>i===artifact.layers.length-1?1/(1+Math.exp(-v)):Math.max(0,v));}return x[0];}
+export const STOP = new Set(
+  'a an the and or of to in on at by for is are was were be been being it its this that these those will with from as has have had after before until'.split(
+    ' ',
+  ),
+);
+export function tokens(s) {
+  return (
+    s
+      .toLowerCase()
+      .match(/[a-z0-9]+/g)
+      ?.filter((x) => !STOP.has(x)) ?? []
+  );
+}
+export function exact(source, candidate) {
+  const normalize = (s) => s.toLowerCase().replace(/\s+/g, ' ').trim();
+  return candidate.trim().length > 20 && normalize(source).includes(normalize(candidate)) ? 1 : 0;
+}
+export function fuzzy(source, candidate) {
+  const a = new Set(tokens(source)),
+    b = new Set(tokens(candidate));
+  return b.size ? [...b].filter((x) => a.has(x)).length / b.size : 0;
+}
+export function pairFeatures(a, b, source, candidate) {
+  return [
+    ...a.map((x, i) => Math.abs(x - b[i])),
+    ...a.map((x, i) => x * b[i]),
+    fuzzy(source, candidate),
+    exact(source, candidate),
+  ];
+}
+export function metrics(labels, scores, threshold) {
+  let tp = 0,
+    fp = 0,
+    tn = 0,
+    fn = 0;
+  labels.forEach((y, i) => {
+    const p = scores[i] >= threshold;
+    if (y && p) tp++;
+    else if (!y && p) fp++;
+    else if (y) fn++;
+    else tn++;
+  });
+  const precision = tp / (tp + fp || 1),
+    recall = tp / (tp + fn || 1);
+  return {
+    precision,
+    recall,
+    f1: (2 * precision * recall) / (precision + recall || 1),
+    fpr: fp / (fp + tn || 1),
+    threshold,
+    tp,
+    fp,
+    fn,
+    tn,
+  };
+}
+export function chooseThreshold(labels, scores) {
+  const choices = [...new Set([0, ...scores, 1.000001])].sort((a, b) => a - b);
+  let best = metrics(labels, scores, 1.000001);
+  for (const t of choices) {
+    const m = metrics(labels, scores, t);
+    if (
+      m.fpr <= 0.05 &&
+      (m.recall > best.recall || (m.recall === best.recall && m.precision > best.precision))
+    )
+      best = m;
+  }
+  return best.threshold;
+}
+export function forward(features, artifact) {
+  let x = features;
+  for (let i = 0; i < artifact.layers.length; i++) {
+    const { weights, bias } = artifact.layers[i];
+    const out = bias.map((b, j) => b + x.reduce((sum, v, k) => sum + v * weights[k][j], 0));
+    x = out.map((v) =>
+      i === artifact.layers.length - 1 ? 1 / (1 + Math.exp(-v)) : Math.max(0, v),
+    );
+  }
+  return x[0];
+}

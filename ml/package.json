@@ -1,0 +1,1 @@
+{"name":"afterimage-research","private":true,"type":"module","scripts":{"train":"node train.mjs"},"dependencies":{"@huggingface/transformers":"^3.8.1","@tensorflow/tfjs":"4.22.0"}}

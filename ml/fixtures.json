@@ -1,0 +1,44 @@
+[
+  {
+    "id": "monsoon",
+    "number": "01",
+    "title": "The missing monsoon",
+    "subtitle": "Water systems · unpublished field research",
+    "author": "Dr. Aditi Rao",
+    "date": "16 September 2026",
+    "code": "THAR / 026",
+    "context": "Preliminary observations from the western field stations. Internal circulation only; the public abstract contains methodology, not results.",
+    "source": "The Khetolai pilot recorded a 31% reduction in groundwater recharge. The team will suspend the western borewell trial on 18 October. These findings remain confidential until the district review.",
+    "search": "The Khetolai pilot recorded a 31% reduction in groundwater recharge.",
+    "activity": "The western borewell experiment will be paused on October 18 after recharge at Khetolai fell by nearly a third.",
+    "publicText": "The Thar water study examines seasonal groundwater recharge using field sensors. Results will be released after peer review."
+  },
+  {
+    "id": "orchid",
+    "number": "02",
+    "title": "A location worth protecting",
+    "subtitle": "Conservation · restricted field notes",
+    "author": "Dr. Kabir Sen",
+    "date": "12 September 2026",
+    "code": "FLORA / 041",
+    "context": "Habitat observations are shared with approved conservation collaborators. Exact nesting and population details are excluded from the public field guide.",
+    "source": "The orchid colony contains 47 flowering plants in the eastern quarry. The survey team will visit the site on 23 November. The colony location is restricted to the conservation team.",
+    "search": "The orchid colony contains 47 flowering plants in the eastern quarry.",
+    "activity": "Forty-seven orchids are flowering at the quarry to the east; the researchers return there on November 23.",
+    "publicText": "The conservation project monitors rare orchids and publishes general habitat guidance without disclosing colony locations."
+  },
+  {
+    "id": "fellowship",
+    "number": "03",
+    "title": "Before the announcement",
+    "subtitle": "Research office · confidential review",
+    "author": "Prof. Leena Shah",
+    "date": "9 September 2026",
+    "code": "AWARDS / 013",
+    "context": "Panel deliberations are confidential. The public programme description is approved for general circulation; award decisions are not.",
+    "source": "The panel selected the Aster lab for a grant of 840000 rupees. The award will be announced on 14 December. The selection must remain private until the announcement.",
+    "search": "The panel selected the Aster lab for a grant of 840000 rupees.",
+    "activity": "Aster is receiving an eight lakh forty thousand rupee research award, with the public announcement scheduled for December 14.",
+    "publicText": "The fellowship programme funds interdisciplinary research. Award recipients are published after the selection process concludes."
+  }
+]

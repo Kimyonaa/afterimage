@@ -1,0 +1,98 @@
+{
+  "status": "complete",
+  "note": "Measured on 160 synthetic test pairs from two held-out topic families. These results do not measure performance on real websites.",
+  "seed": 42,
+  "epochs": 50,
+  "bestEpoch": 50,
+  "counts": {
+    "train": 400,
+    "validation": 80,
+    "test": 160
+  },
+  "architecture": "Frozen, quantized MiniLM-L6 sentence embeddings (384 dimensions), followed by a trained 770 → 32 → 16 → 1 neural pair classifier. Inputs include embedding differences, products, and two lexical baseline features. The transformer itself was not fine-tuned.",
+  "split": "50 source documents for training, 10 for validation, and 20 for testing. Every derivative stays with its source. Marine and air-quality topics are held out; test paraphrases use different scaffolding, but other template families are shared.",
+  "models": [
+    {
+      "name": "Exact passage",
+      "precision": 1,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "fpr": 0,
+      "threshold": 1,
+      "tp": 40,
+      "fp": 0,
+      "fn": 40,
+      "tn": 80
+    },
+    {
+      "name": "Token containment",
+      "precision": 1,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "fpr": 0,
+      "threshold": 0.6363636363636364,
+      "tp": 40,
+      "fp": 0,
+      "fn": 40,
+      "tn": 80
+    },
+    {
+      "name": "Neural pair classifier",
+      "precision": 1,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "fpr": 0,
+      "threshold": 0.9965944582248818,
+      "tp": 40,
+      "fp": 0,
+      "fn": 40,
+      "tn": 80
+    },
+    {
+      "name": "Frozen MiniLM cosine",
+      "precision": 0.59375,
+      "recall": 0.2375,
+      "f1": 0.3392857142857143,
+      "fpr": 0.1625,
+      "threshold": 0.8372570633092076,
+      "tp": 19,
+      "fp": 13,
+      "fn": 61,
+      "tn": 67
+    },
+    {
+      "name": "Neural · embeddings only",
+      "precision": 1,
+      "recall": 0.475,
+      "f1": 0.6440677966101694,
+      "fpr": 0,
+      "threshold": 0.989337992776434,
+      "tp": 38,
+      "fp": 0,
+      "fn": 42,
+      "tn": 80
+    },
+    {
+      "name": "Neural · lexical only",
+      "precision": 1,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "fpr": 0,
+      "threshold": 0.8470663838151035,
+      "tp": 40,
+      "fp": 0,
+      "fn": 40,
+      "tn": 80
+    }
+  ],
+  "limitations": [
+    "Synthetic templates and a small sample can exaggerate generalization. No real-world security accuracy is claimed.",
+    "Labels indicate source-content correspondence under the fixture policy, not formal entailment or a universal definition of confidentiality.",
+    "The follow-up ablations reuse the observed test split and are exploratory; a fresh independent evaluation is still required.",
+    "No numeric contradiction benchmark, multilingual evaluation, image encoder, or browser-cache inspection is included.",
+    "Thresholds use validation data; scores are uncalibrated. False positives and false negatives require human review."
+  ],
+  "encoder": "Xenova/all-MiniLM-L6-v2",
+  "ablation": "Exploratory follow-up on the same split after seeing the initial baseline results. Both ablated heads use the original seed, architecture width, optimizer, 50 epochs, validation checkpoint selection, and validation-only threshold rule. Results are not an independent confirmation.",
+  "datasetSha256": "652a47912b53e15ab878aa34ff4ea68d14ab7413cc5bc2bfeb40d7c5f3cd8d71"
+}

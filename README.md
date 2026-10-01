@@ -25,7 +25,11 @@ Open the local URL printed by the development server. The app includes pretraine
 
 This project includes only fictional fixtures; it does not scan external websites or ingest your resume.
 
-## Live Passage Lab (v0.2)
+## Notebook interface (v0.3)
+
+The workbench uses a restrained paper-and-ink layout, direct observation labels, and responsive document views. Hosted Passage Lab explains how to open the local edition and does not automatically contact a loopback service. Reduced-motion preferences are respected.
+
+## Live Passage Lab
 
 ```sh
 npm ci --prefix ml

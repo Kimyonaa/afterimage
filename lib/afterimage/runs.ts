@@ -42,7 +42,6 @@ export function parseArchive(raw: string | null): Run[] {
           typeof x.state.repaired === 'boolean' &&
           Array.isArray(x.findings) &&
           x.findings.length === 4 &&
-          new Set(x.findings.map((f) => f.surface)).size === 4 &&
           x.findings.every(
             (f) =>
               f &&
@@ -50,8 +49,11 @@ export function parseArchive(raw: string | null): Run[] {
               typeof f.text === 'string' &&
               typeof f.flagged === 'boolean' &&
               Number.isFinite(f.score) &&
-              Number.isFinite(f.status),
-          )
+              Number.isFinite(f.status) &&
+              typeof f.reason === 'string' &&
+              typeof f.observation === 'string',
+          ) &&
+          new Set(x.findings.map((f) => f.surface)).size === 4
         );
       })
       .slice(0, 20);
@@ -60,15 +62,17 @@ export function parseArchive(raw: string | null): Run[] {
   }
 }
 export function previousUnfixed(runs: Run[], current: Run): Run | undefined {
-  return runs.find(
-    (r) =>
-      r !== current &&
-      r.state.caseId === current.state.caseId &&
-      r.model === current.model &&
-      r.state.revoked &&
-      !r.state.repaired &&
-      r.createdAt < current.createdAt,
-  );
+  if (!current.state.repaired) return undefined;
+  return runs
+    .filter(
+      (r) =>
+        r.state.caseId === current.state.caseId &&
+        r.model === current.model &&
+        r.state.revoked &&
+        !r.state.repaired &&
+        Date.parse(r.createdAt) < Date.parse(current.createdAt),
+    )
+    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))[0];
 }
 export function evidenceBundle(
   run: Run,

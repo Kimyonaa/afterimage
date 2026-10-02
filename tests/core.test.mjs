@@ -105,6 +105,11 @@ test('Corrupt archived data is discarded and exports preserve source and before/
     state: { ...before.state, repaired: true },
   };
   assert.equal(parseArchive(JSON.stringify([before, after])).length, 2);
+  const malformed = { ...before, findings: [null, ...findings.slice(1)] };
+  assert.deepEqual(parseArchive(JSON.stringify([malformed, before])), [before]);
+  const earlier = { ...before, createdAt: '2026-10-01T00:00:00Z' };
+  assert.equal(previousUnfixed([earlier, before], after), before);
+  assert.equal(previousUnfixed([earlier], before), undefined);
   assert.equal(previousUnfixed([after, before], after), before);
   assert.equal(previousUnfixed([{ ...before, model: 'other' }], after), undefined);
   const bundle = evidenceBundle(after, cases[0], before);

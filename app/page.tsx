@@ -65,11 +65,25 @@ const detectorNames: Record<string, string> = {
   embedding: 'Neural · embeddings only',
   lexical: 'Neural · lexical only',
 };
+type View = 'investigation' | 'benchmark' | 'method' | 'passage' | 'archive';
+const views: View[] = ['investigation', 'benchmark', 'method', 'passage', 'archive'];
 const fmt = (n: number) => `${(n * 100).toFixed(1)}%`;
 export default function Home() {
-  const [view, setView] = useState<
-    'investigation' | 'benchmark' | 'method' | 'passage' | 'archive'
-  >('investigation');
+  const [view, updateView] = useState<View>('investigation');
+  function setView(next: View) {
+    window.location.hash = next;
+    updateView(next);
+  }
+  useEffect(() => {
+    const read = () => {
+      if (window.location.hash === '#workspace') return;
+      const next = window.location.hash.slice(1) as View;
+      updateView(views.includes(next) ? next : 'investigation');
+    };
+    read();
+    window.addEventListener('hashchange', read);
+    return () => window.removeEventListener('hashchange', read);
+  }, []);
   const [state, setState] = useState<LabState>(DEFAULT_STATE);
   const [run, setRun] = useState<Run | null>(null);
   const [runs, setRuns] = useState<Run[]>([]);
@@ -195,6 +209,9 @@ export default function Home() {
   const step = run?.state.repaired ? 3 : run ? 2 : state.revoked ? 1 : 0;
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#workspace">
+        Skip to workspace
+      </a>
       <aside className="sidebar">
         <a className="brand" href="/" aria-label="Afterimage home">
           <span className="brand-icon">
@@ -281,7 +298,7 @@ export default function Home() {
           </div>
         </div>
       </aside>
-      <main className="main-area">
+      <main className="main-area" id="workspace">
         <header className="topbar">
           <div className="breadcrumb">
             Workspace <span>/</span>{' '}
@@ -298,7 +315,14 @@ export default function Home() {
             </strong>
           </div>
           <div className="topbar-right">
-            <span className="research-tag">RESEARCH NOTEBOOK · 2026</span>
+            <a
+              className="repository-link"
+              href="https://github.com/Kimyonaa/afterimage"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Source code <ExternalLink size={13} />
+            </a>
             <button
               className="icon-button"
               onClick={() => setView('method')}
@@ -336,6 +360,28 @@ export default function Home() {
                   <Download size={16} /> Export evidence
                 </button>
               </section>
+              <details className="quick-guide">
+                <summary>First visit? A two-minute walkthrough</summary>
+                <ol>
+                  <li>
+                    Choose a case and select <strong>Revoke &amp; trace</strong>. If a previous
+                    session is active, reset it first.
+                  </li>
+                  <li>
+                    Compare the source with the search preview and activity message. The source is
+                    blocked, but three deliberately faulty surfaces still expose content.
+                  </li>
+                  <li>
+                    Select <strong>Apply fix &amp; recheck</strong>. Inspect the before/after
+                    evidence and export the result.
+                  </li>
+                </ol>
+                <p>
+                  This is a fictional portal with known faults. Open{' '}
+                  <a href="#benchmark">Model bench</a> to see the detector’s measured mistakes, or{' '}
+                  <a href="#passage">Passage lab</a> to explore the role of access policy.
+                </p>
+              </details>
               <section className="experiment-bar" aria-label="Experiment controls">
                 <div className="experiment-case">
                   <span className="mini-label">ACTIVE CASE</span>

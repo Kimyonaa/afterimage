@@ -6,7 +6,7 @@ A working research prototype that traces private passages across a web applicati
 
 [Demo walkthrough](docs/demo.md) · [Research protocol](ml/README.md) · [Model attribution](NOTICE.md)
 
-The hosted notebook is currently private. The source runs locally without a Sites account or an API key. Model weights are downloaded separately and are not checked into Git.
+The [hosted notebook](https://afterimage-research-lab.anupamnainiwal.chatgpt.site) is public. The source runs locally without a Sites account or an API key. Model weights are downloaded separately and are not checked into Git.
 
 ## Run locally
 
@@ -31,7 +31,7 @@ This project includes only fictional fixtures; it does not scan external website
 
 ## Notebook interface (v0.3)
 
-The workbench uses a restrained paper-and-ink layout, direct observation labels, and responsive document views. Hosted Passage Lab explains how to open the local edition and does not automatically contact a loopback service. Reduced-motion preferences are respected.
+The workbench uses a restrained paper-and-ink layout, direct observation labels, and responsive document views. Hosted Passage Lab provides interactive recorded examples and explains how to open the local edition. It does not automatically contact a loopback service. Reduced-motion preferences are respected.
 
 ## Live Passage Lab
 
@@ -43,6 +43,8 @@ npm run dev:lab
 This starts the web app and a local model companion on port 8765. If the web app is already running, use `npm run model:serve` in a second terminal. First startup downloads `Xenova/nli-deberta-v3-xsmall`; later runs use `ml/cache/`. Passage Lab accepts your own text and performs real local ONNX inference. Passage text is not sent to an external service or stored in the run archive. Inputs are limited to 4,000 characters per passage and 512 combined tokens.
 
 The investigator’s **Exact + entailment (recorded)** option combines a live exact-match check with recorded NLI scores for known fixtures. It does not run DeBERTa inside the web worker. Passage Lab runs the actual model for each comparison. DeBERTa is pretrained, not fine-tuned by this project.
+
+You can share individual sections using `#investigation`, `#benchmark`, `#passage`, `#archive`, or `#method`. Section links never include source text or saved evidence. The first-visit walkthrough explains how to reproduce a revocation and repair.
 
 ## Fresh challenge
 

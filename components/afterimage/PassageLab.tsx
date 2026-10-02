@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   LockKeyhole,
 } from 'lucide-react';
+import RecordedLab from './RecordedLab';
 import { cases } from '@/lib/afterimage/fixtures';
 type Result = {
   score: number;
@@ -25,6 +26,7 @@ type Result = {
 };
 const endpoint = 'http://127.0.0.1:8765';
 export default function PassageLab() {
+  const [recordedMode, setRecordedMode] = useState(false);
   const [source, setSource] = useState(cases[0].source),
     [candidate, setCandidate] = useState(cases[0].activity),
     [revoked, setRevoked] = useState(true),
@@ -90,6 +92,8 @@ export default function PassageLab() {
     setPublicApproved(kind === 'public');
     edit();
   }
+  if ((!local && !checking) || recordedMode)
+    return <RecordedLab onLive={local ? () => setRecordedMode(false) : undefined} />;
   return (
     <div className="secondary-page passage-lab">
       <div className="eyebrow">
@@ -117,22 +121,6 @@ export default function PassageLab() {
           download on first startup. This companion is available when running Afterimage locally.
         </p>
       </div>
-      {!local && !checking && (
-        <div className="hosted-lab-note">
-          <h2>Use the local edition for your own text.</h2>
-          <p>
-            The published notebook includes the investigations and measured results. Custom passages
-            run on your computer, through the local model companion.
-          </p>
-          <a className="button secondary" href="http://127.0.0.1:5173/">
-            Open local workbench
-          </a>
-          <p>
-            Start it from the project directory with <code>npm run dev:lab</code>. Install model
-            dependencies first with <code>npm ci --prefix ml</code>.
-          </p>
-        </div>
-      )}
       {local && !ready && (
         <div className="engine-start">
           <div>
@@ -148,6 +136,9 @@ export default function PassageLab() {
           </button>
         </div>
       )}
+      <button className="source-download" onClick={() => setRecordedMode(true)}>
+        Explore recorded examples without the local model
+      </button>
       <div className="example-options">
         <span>Try a case</span>
         <button disabled={busy} onClick={() => example('paraphrase')}>
